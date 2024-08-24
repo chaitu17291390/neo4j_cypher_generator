@@ -1,0 +1,7 @@
+langchain
+langchain-community
+openai
+pydantic
+neo4j
+langchain-openai
+streamlit
