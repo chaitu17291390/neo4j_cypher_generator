@@ -81,13 +81,25 @@ agent_executor = AgentExecutor(
 )
 
 
-def run_agent(input_text: str):
+def run_agent(input_text: str, chat_history: List[Tuple[str, str]] = None):
     print("Running agent with input:", input_text)
-    input_data = {"input": input_text, "chat_history": []}
+    if chat_history is None:
+        chat_history = []
+
+    input_data = {
+        "input": input_text,
+        "chat_history": chat_history
+    }
+
     print("Input data prepared:", input_data)
     result = agent_executor.invoke(input_data)
+
+    # Append the latest question and response to the chat history
+    chat_history.append((input_text, result['output']))
+
     print("Agent result:", result)
-    return result["output"]
+    return result['output'], chat_history
+
 
 
 # result = run_agent("list top 5 materials related to equipment 82135-09-0")

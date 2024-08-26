@@ -38,11 +38,24 @@ if "messages" not in st.session_state:
 
 # tag::submit[]
 # Submit handler
+
+
 def handle_submit(message):
+    # Prepare chat history from session state
+    chat_history = [(msg["role"], msg["content"]) for msg in st.session_state.messages if
+                    msg["role"] == "user" or msg["role"] == "assistant"]
+
     # Handle the response
     with st.spinner('Thinking...'):
-        response = run_agent(message)
+        response, updated_chat_history = run_agent(message, chat_history)
+
+        # Update the session state with the new response
+        st.session_state.messages.append({"role": "assistant", "content": response})
+
+        # Write the response to the chat
         write_message('assistant', response)
+
+
 # end::submit[]
 
 
