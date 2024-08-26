@@ -21,10 +21,10 @@ st.set_page_config("Ebert", page_icon=":movie_camera:")
 
 # Hide the Main Menu in the Streamlit Community Cloud app
 hide_main_menu = """
-#MainMenu {
-  visibility: hidden;
-}
-"""
+    <style>
+    #MainMenu {visibility: hidden;}
+    </style>
+    """
 st.markdown(hide_main_menu, unsafe_allow_html=True)
 # end::setup[]
 
