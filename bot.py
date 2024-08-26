@@ -4,10 +4,10 @@ from final_agent import run_agent
 # tag::setup[]
 # Page Config
 
-def write_message(role, content, save = True):
+def write_message(role, content, save=True):
     """
     This is a helper function that saves a message to the
-     session state and then writes a message to the UI
+    session state and then writes a message to the UI
     """
     # Append to session state
     if save:
@@ -18,6 +18,15 @@ def write_message(role, content, save = True):
         st.markdown(content)
 
 st.set_page_config("Ebert", page_icon=":movie_camera:")
+
+# Hide the GitHub icon in the Streamlit Community Cloud app
+hide_github_icon = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide_github_icon, unsafe_allow_html=True)
 # end::setup[]
 
 # tag::session[]
