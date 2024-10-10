@@ -88,6 +88,7 @@ from langchain.tools import BaseTool
 class CypherInput(BaseModel):
     input_str: str = Field(description="extract the entire input question")
 #added comment A
+#added comment B
 
 class GraphCypherTool(BaseTool):
     name = "CypherTool"
